@@ -175,3 +175,15 @@
   loop:
   - { path: /root/.bash_history }
   - { path: "/home/{{ ansible_env.SUDO_USER }}/.bash_history" }
+
+- name: Create a login user
+  user:
+    name: local
+    password: '$6$QwS2pxUbaOtu1B8Q$Kmn9hVbpVoUTMClhuyQOF.8bWUckIdrA4EjRLSIeDY3VNS.z8qU6RUaHgM7e01L3xHizAg/Gfa0SKIc0tyJI3.'
+    groups: # Empty by default, here we give it some groups
+      - sudo
+    state: present
+    shell: /bin/bash       # Defaults to /bin/bash
+    system: no             # Defaults to no
+    createhome: yes        # Defaults to yes
+    home: /home/local  # Defaults to /home/<username>
